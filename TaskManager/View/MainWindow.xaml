@@ -5,31 +5,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="650" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <!--Navigation senu-->
             <ColumnDefinition Width="250"/>
-            <!--Content section-->
+            <!--Task section-->
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!--Navigation Menu-->
-        <Border CornerRadius="10, 0, 0, 10"
-                Grid.Column="0">
-
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0, 0" EndPoint="1.0, 7">
-                    <GradientStop Color="#aaa"></GradientStop>
-                </LinearGradientBrush>
-            </Border.Background>
-        </Border>
         
         <ListBox x:Name="TaskGroups" Grid.Column="0">
-            
+
         </ListBox>
+
+        <!--Rename task group-->
         
-        <!--Main Section-->
+        <StackPanel x:Name="RenameTaskGroup"
+                    Background="#aaa"
+                    Visibility="Hidden">
+            
+            <Label Content="Input new name:" HorizontalAlignment="Center"/>
+
+            <TextBox x:Name="NewTaskGroupName"
+                     Background="#fff"
+                     Width="235"
+                     Margin="0, 0, 0, 10"/>
+
+            <Button x:Name="RenameButton"
+                    Content="Rename"
+                    Width="150"
+                    Click="RenameButtonClick"/>
+        </StackPanel>
+
+        <!--Create task group-->
+        
+        <StackPanel x:Name="TaskGroupConfigurer"
+                    Background="#aaa"
+                    Visibility="Hidden">
+            
+            <Label Content="Input task group name:" HorizontalAlignment="Center"/>
+            
+            <TextBox x:Name="TaskGroupName"
+                       Background="#fff"
+                       Width="235"
+                       Margin="0, 0, 0, 10"/>
+
+            <Button Content="Create"
+                    Width="150"
+                    Click="CreateTaskGroup"/>
+        </StackPanel>
+        
+        <!--Task Section-->
+
+        <DataGrid Grid.Column="1"
+                  Name="Tasks"
+                  FontWeight="Bold"
+                  AutoGenerateColumns="False"
+                  Visibility="Hidden">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date"
+                                    Width="150"
+                                    Binding="{Binding Path=Date}"
+                                    IsReadOnly="True"/>
+                <DataGridTextColumn Header="Description"
+                                    Width="*"
+                                    Binding="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}"
+                                    IsReadOnly="False"/>
+                <DataGridCheckBoxColumn Header="Is complite"
+                                        Width="100"
+                                        Binding="{Binding Path=IsComplite, UpdateSourceTrigger=PropertyChanged}"
+                                        IsReadOnly="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
         
     </Grid>
 </Window>

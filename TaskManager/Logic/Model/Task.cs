@@ -1,23 +1,47 @@
-﻿namespace TaskManager.Logic.Model
-{
-    internal class Task
-    {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public bool isComplite { get; set; }
-    
-        public Task()
-        {
-            this.Title = string.Empty;
-            this.Description = string.Empty;
-            this.isComplite = false;
-        }
+﻿using System;
+using System.ComponentModel;
 
-        public Task(string Title, string Description)
+namespace TaskManager.Logic.Model
+{
+    [Serializable]
+    internal class Task: INotifyPropertyChanged
+    {
+        private string _description;
+        private bool _isComplite;
+
+        public DateTime Date { get; set; } = DateTime.Now;
+        public string Description { get
+            {
+                return _description;
+            }
+            set
+            {
+                if(_description == value)
+                    return;
+
+                _description = value;
+                this.OnPropertyChanged("Description");
+            }
+        }
+        public bool IsComplite { 
+            get 
+            {
+                return _isComplite;
+            }
+            set 
+            {
+                if (_isComplite == value)
+                    return;
+
+                _isComplite = value;
+                OnPropertyChanged("IsComplite");
+            } }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName = "")
         {
-            this.Title = Title;
-            this.Description = Description;
-            this.isComplite = false;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
