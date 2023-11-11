@@ -92,6 +92,8 @@ namespace TaskManager.View
             NewTaskGroupName.Text = null;
 
             RenameButton.Tag = rename.Tag;
+
+            Serializer.serialize(taskGroups);
         }
 
         private bool isValidName(string val)
@@ -134,7 +136,7 @@ namespace TaskManager.View
 
             taskGroups.RemoveAt(findTaskGroupByName(delete.Tag.ToString()));
 
-
+            Serializer.serialize(taskGroups);
             Draw();
         }
 
