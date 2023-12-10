@@ -6,30 +6,46 @@ namespace TaskManager.Logic.Model
     [Serializable]
     internal class TaskGroup
     {
-        public string Name { get; set; }
-        public BindingList<Task> Tasks { get; set; }
+        private string _name;
+        private BindingList<Task> _tasks;
+
+        public string Name {
+            get {
+                return _name;
+            }
+            set {
+                _name = value;
+            }
+        }
+        public BindingList<Task> Tasks { 
+            get {
+                return this._tasks;
+            }
+            set { 
+                this._tasks = value;
+            } }
 
         public TaskGroup() 
         { 
-            this.Name = string.Empty;
-            this.Tasks = new BindingList<Task>();
+            this._name = string.Empty;
+            this._tasks = new BindingList<Task>();
         }
 
         public TaskGroup(string Name)
         {
-            this.Name = Name;
-            this.Tasks = new BindingList<Task>();
+            this._name = Name;
+            this._tasks = new BindingList<Task>();
         }
 
         public TaskGroup(string Name, BindingList<Task> Tasks)
         {
-            this.Name = Name;
-            this.Tasks = Tasks;
+            this._name = Name;
+            this._tasks = Tasks;
         }
 
         public void AddTask(Task task)
         {
-            this.Tasks.Add(task);
+            this._tasks.Add(task);
         }
 
     }

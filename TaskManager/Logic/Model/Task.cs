@@ -8,9 +8,18 @@ namespace TaskManager.Logic.Model
     {
         private string _description;
         private bool _isComplite;
+        private DateTime _date = DateTime.Now;
 
-        public DateTime Date { get; set; } = DateTime.Now;
-        public string Description { get
+        public DateTime Date { 
+            get {
+                return _date;
+            } 
+            set {
+                _date = value;
+            } 
+        }
+        public string Description {
+            get
             {
                 return _description;
             }
