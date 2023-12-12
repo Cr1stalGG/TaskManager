@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using TaskManager.Logic.Model;
+using TaskManager.Model;
 
-namespace TaskManager.Logic.Util
+namespace TaskManager.Util
 {
     internal static class Serializer
     {

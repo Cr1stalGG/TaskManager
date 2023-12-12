@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace TaskManager.Logic.Model
+namespace TaskManager.Model
 {
     [Serializable]
-    internal class Task: INotifyPropertyChanged
+    public class Task: INotifyPropertyChanged
     {
         private string _description;
         private bool _isComplite;

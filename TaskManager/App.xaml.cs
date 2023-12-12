@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Documents;
-using TaskManager.Logic.Model;
+using TaskManager.Model;
 
 namespace TaskManager
 {

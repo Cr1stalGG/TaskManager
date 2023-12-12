@@ -2,8 +2,10 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using TaskManager.Logic.Model;
-using TaskManager.Logic.Util;
+using System.Windows.Media;
+using TaskManager.Model;
+using TaskManager.Service;
+using TaskManager.Util;
 
 namespace TaskManager.View
 {
@@ -11,13 +13,15 @@ namespace TaskManager.View
     public partial class MainWindow : Window
     {
         private static List<TaskGroup> taskGroups;
+        private TaskService taskService;
 
         public MainWindow()
         {
             InitializeComponent();
 
             taskGroups = (List<TaskGroup>)Serializer.deserialize();
-            
+            taskService = new TaskServiceImpl();
+
             Draw();
             
         }
@@ -28,7 +32,7 @@ namespace TaskManager.View
 
             foreach (TaskGroup taskGroup in taskGroups)
             {
-                TaskGroups.Items.Add(GetConfiguredButton(taskGroup));
+                TaskGroups.Items.Add(taskService.GetConfiguredButton(taskGroup, OpenTaskGroup, Rename, Delete));
             }
 
             Button addButton = new Button();
@@ -50,7 +54,7 @@ namespace TaskManager.View
 
         private void CreateTaskGroup(object sender, RoutedEventArgs e)
         {
-            if(!isValidName(TaskGroupName.Text))
+            if(!taskService.isValidName(TaskGroupName.Text, taskGroups))
             {
                 MessageBox.Show("Invalid task group name!!!");
                 return;
@@ -63,23 +67,6 @@ namespace TaskManager.View
             TaskGroupConfigurer.Visibility = Visibility.Hidden;
 
             Draw();
-        }
-
-
-        private Button GetConfiguredButton(TaskGroup taskGroup)
-        {
-            Button button = new Button();
-
-            button.Content= taskGroup.Name;
-            button.Width = 235;
-            button.Height = 25;
-            button.Tag = taskGroup.Name;
-
-            button.ContextMenu = getConfiguredContextMenu(taskGroup);
-
-            button.Click += OpenTaskGroup;
-
-            return button;
         }
 
         private void Rename(object sender, RoutedEventArgs e)
@@ -96,26 +83,11 @@ namespace TaskManager.View
             Serializer.serialize(taskGroups);
         }
 
-        private bool isValidName(string val)
-        {
-            if (val == "")
-                return false;
-
-            if(val.Length > 32)
-                return false;
-
-            foreach (var taskGroup in taskGroups)
-                if (taskGroup.Name == val)
-                    return false;
-
-            return true;
-        }
-
         private void RenameButtonClick(object sender, RoutedEventArgs e)
         {
             Button renameButton = (Button)sender;
 
-            if (!isValidName(NewTaskGroupName.Text))
+            if (!taskService.isValidName(NewTaskGroupName.Text, taskGroups))
             {
                 MessageBox.Show("Invalid task group name!!!");
                 return;
@@ -140,25 +112,7 @@ namespace TaskManager.View
             Draw();
         }
 
-        private ContextMenu getConfiguredContextMenu(TaskGroup taskGroup)
-        {
-            ContextMenu menu = new ContextMenu();
-
-            MenuItem rename = new MenuItem();
-            rename.Header = "Rename";
-            rename.Tag= taskGroup.Name;
-            rename.Click += Rename;
-
-            MenuItem delete = new MenuItem();
-            delete.Header = "Delete";
-            delete.Tag = taskGroup.Name;
-            delete.Click += Delete;
-
-            menu.Items.Add(rename);
-            menu.Items.Add(delete);
-
-            return menu;
-        }
+       
 
         private void OpenTaskGroup(object sender, RoutedEventArgs e)
         {
@@ -187,5 +141,6 @@ namespace TaskManager.View
         {
             Serializer.serialize(taskGroups);
         }
+
     }
 }

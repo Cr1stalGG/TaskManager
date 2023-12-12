@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:TaskManager"
         mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="1000">
-    <Grid>
+    <Grid Background="#fff">
+
         <Grid.ColumnDefinitions>
             <!--Navigation senu-->
             <ColumnDefinition Width="250"/>
@@ -15,26 +16,34 @@
         </Grid.ColumnDefinitions>
 
         <!--Navigation Menu-->
-        
-        <ListBox x:Name="TaskGroups" Grid.Column="0">
-
+        <ListBox x:Name="TaskGroups" 
+                 Grid.Column="0"
+                 Grid.Row="1"
+                 Background="#4E2C1C">
+                  
         </ListBox>
 
         <!--Rename task group-->
         
         <StackPanel x:Name="RenameTaskGroup"
-                    Background="#aaa"
-                    Visibility="Hidden">
+                    Background="#4E2C1C"
+                    Visibility="Hidden"
+                    >
             
-            <Label Content="Input new name:" HorizontalAlignment="Center"/>
+            <Label Content="Input new name:" 
+                   Foreground="White"
+                   HorizontalAlignment="Center"/>
 
             <TextBox x:Name="NewTaskGroupName"
-                     Background="#fff"
+                     Background="#4E2C1C"
+                     Foreground="White"
                      Width="235"
                      Margin="0, 0, 0, 10"/>
 
             <Button x:Name="RenameButton"
                     Content="Rename"
+                    Background="#FF7938"
+                    Foreground="#000"
                     Width="150"
                     Click="RenameButtonClick"/>
         </StackPanel>
@@ -42,17 +51,22 @@
         <!--Create task group-->
         
         <StackPanel x:Name="TaskGroupConfigurer"
-                    Background="#aaa"
+                    Background="#4E2C1C"
                     Visibility="Hidden">
             
-            <Label Content="Input task group name:" HorizontalAlignment="Center"/>
+            <Label Content="Input task group name:"
+                   Foreground="White"
+                   HorizontalAlignment="Center"/>
             
             <TextBox x:Name="TaskGroupName"
-                       Background="#fff"
+                       Background="#FF884F"
+                       
                        Width="235"
                        Margin="0, 0, 0, 10"/>
 
             <Button Content="Create"
+                    Background="#FF7938"
+                    Foreground="White"
                     Width="150"
                     Click="CreateTaskGroup"/>
         </StackPanel>
@@ -63,7 +77,8 @@
                   Name="Tasks"
                   FontWeight="Bold"
                   AutoGenerateColumns="False"
-                  Visibility="Hidden">
+                  Visibility="Hidden"
+                  Background="#fff">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Date"
                                     Width="150"
@@ -79,6 +94,6 @@
                                         IsReadOnly="False"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
     </Grid>
 </Window>

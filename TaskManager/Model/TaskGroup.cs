@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace TaskManager.Logic.Model
+namespace TaskManager.Model
 {
     [Serializable]
-    internal class TaskGroup
+    public class TaskGroup
     {
         private string _name;
         private BindingList<Task> _tasks;
