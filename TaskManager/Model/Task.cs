@@ -8,14 +8,29 @@ namespace TaskManager.Model
     {
         private string _description;
         private bool _isComplite;
-        private DateTime _date = DateTime.Now;
+        private DateTime _dateOfCreation = DateTime.Now;
+        private DateTime _dateOfComplite;
 
-        public DateTime Date { 
+        public DateTime DateOfComplite
+        {
+            get { 
+                return _dateOfComplite;
+            }
+            set
+            {
+                _dateOfComplite = value;
+                OnPropertyChanged("DateOfComplite");
+            }
+        }
+
+        public DateTime DateOfCreation { 
             get {
-                return _date;
+                return _dateOfCreation;
             } 
             set {
-                _date = value;
+                _dateOfCreation = value;
+
+                OnPropertyChanged("DateOfCreation");
             } 
         }
         public string Description {
@@ -43,8 +58,13 @@ namespace TaskManager.Model
                     return;
 
                 _isComplite = value;
+
+                if(_isComplite)
+                    _dateOfComplite = DateTime.Now;
+
                 OnPropertyChanged("IsComplite");
-            } }
+            } 
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

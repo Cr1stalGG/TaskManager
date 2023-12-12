@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -120,6 +121,10 @@ namespace TaskManager.View
             int id = taskService.findTaskGroupByName(btn.Tag.ToString(), taskGroups);
 
             Tasks.ItemsSource = taskGroups[id].Tasks;
+
+            foreach (Task task in Tasks.ItemsSource)
+                if (task.IsComplite)
+                    task.DateOfComplite = DateTime.Now;
             Tasks.Visibility = Visibility.Visible;
 
             taskGroups[id].Tasks.ListChanged += tasksListChanged;

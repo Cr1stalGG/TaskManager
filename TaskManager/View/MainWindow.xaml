@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1000">
+        Title="Task manager" Height="650" Width="1000">
     <Grid Background="#fff">
 
         <Grid.ColumnDefinitions>
@@ -82,7 +82,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Date"
                                     Width="150"
-                                    Binding="{Binding Path=Date}"
+                                    Binding="{Binding Path=DateOfCreation}"
                                     IsReadOnly="True"/>
                 <DataGridTextColumn Header="Description"
                                     Width="*"
@@ -92,6 +92,10 @@
                                         Width="100"
                                         Binding="{Binding Path=IsComplite, UpdateSourceTrigger=PropertyChanged}"
                                         IsReadOnly="False"/>
+                <DataGridTextColumn Header="Complited"
+                     Width="150"
+                     Binding="{Binding Path=DateOfComlite}"
+                     IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
 
