@@ -14,5 +14,7 @@ namespace TaskManager.Service
         Button GetConfiguredButton(TaskGroup taskGroup, RoutedEventHandler function, RoutedEventHandler renameHandler, RoutedEventHandler deleteHandler);
         ContextMenu getConfiguredContextMenu(TaskGroup taskGroup, RoutedEventHandler renameHandler, RoutedEventHandler deleteHandler);
         bool isValidName(string val, List<TaskGroup> taskGroups);
+        public int findTaskGroupByName(string value, List<TaskGroup> taskGroups);
+
     }
 }

@@ -71,5 +71,16 @@ namespace TaskManager.Service
 
             return true;
         }
+
+        public int findTaskGroupByName(string value, List<TaskGroup> taskGroups)
+        {
+            for (int i = 0; i < taskGroups.Count; ++i)
+            {
+                if (taskGroups[i].Name == value)
+                    return i;
+            }
+
+            return -1;
+        }
     }
 }

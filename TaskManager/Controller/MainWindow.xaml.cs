@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using TaskManager.Model;
 using TaskManager.Service;
 using TaskManager.Util;
@@ -93,7 +92,7 @@ namespace TaskManager.View
                 return;
             }
 
-            taskGroups[findTaskGroupByName(renameButton.Tag.ToString())].Name = NewTaskGroupName.Text;
+            taskGroups[taskService.findTaskGroupByName(renameButton.Tag.ToString(), taskGroups)].Name = NewTaskGroupName.Text;
 
             Draw();
 
@@ -106,7 +105,7 @@ namespace TaskManager.View
         {
             MenuItem delete = (MenuItem)sender;
 
-            taskGroups.RemoveAt(findTaskGroupByName(delete.Tag.ToString()));
+            taskGroups.RemoveAt(taskService.findTaskGroupByName(delete.Tag.ToString(), taskGroups));
 
             Serializer.serialize(taskGroups);
             Draw();
@@ -118,23 +117,12 @@ namespace TaskManager.View
         {
             Button btn = (Button)sender;
 
-            int id = findTaskGroupByName(btn.Tag.ToString());
+            int id = taskService.findTaskGroupByName(btn.Tag.ToString(), taskGroups);
 
             Tasks.ItemsSource = taskGroups[id].Tasks;
             Tasks.Visibility = Visibility.Visible;
 
             taskGroups[id].Tasks.ListChanged += tasksListChanged;
-        }
-
-        private int findTaskGroupByName(string value)
-        {
-            for(int i = 0; i < taskGroups.Count; ++i)
-            {
-                if (taskGroups[i].Name == value)
-                    return i;
-            }
-
-            return -1;
         }
 
         private void tasksListChanged(object sender, ListChangedEventArgs e)
