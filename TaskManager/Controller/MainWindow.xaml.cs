@@ -9,7 +9,6 @@ using TaskManager.Util;
 
 namespace TaskManager.View
 {
-
     public partial class MainWindow : Window
     {
         private static List<TaskGroup> taskGroups;
@@ -23,9 +22,8 @@ namespace TaskManager.View
             taskService = new TaskServiceImpl();
 
             Draw();
-            
         }
-
+            
         private void Draw()
         {
             TaskGroups.Items.Clear();
@@ -50,6 +48,17 @@ namespace TaskManager.View
             TaskGroupConfigurer.Visibility = Visibility.Visible;
 
             TaskGroupName.Text = null;
+        }
+
+        private void CreateBackClick(object sender, RoutedEventArgs e)
+        {
+            TaskGroupConfigurer.Visibility = Visibility.Hidden;
+
+        }
+
+        private void RenameBackClick(object sender, RoutedEventArgs e)
+        {
+            RenameTaskGroup.Visibility = Visibility.Hidden;
         }
 
         private void CreateTaskGroup(object sender, RoutedEventArgs e)
@@ -111,8 +120,6 @@ namespace TaskManager.View
             Serializer.serialize(taskGroups);
             Draw();
         }
-
-       
 
         private void OpenTaskGroup(object sender, RoutedEventArgs e)
         {

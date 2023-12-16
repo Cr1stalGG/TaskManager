@@ -27,8 +27,7 @@
         
         <StackPanel x:Name="RenameTaskGroup"
                     Background="#4E2C1C"
-                    Visibility="Hidden"
-                    >
+                    Visibility="Hidden">
             
             <Label Content="Input new name:" 
                    Foreground="White"
@@ -45,7 +44,15 @@
                     Background="#FF7938"
                     Foreground="#000"
                     Width="150"
-                    Click="RenameButtonClick"/>
+                    Click="RenameButtonClick"
+                    Margin="0, 0, 0, 10"/>
+  
+            <Button x:Name="RenameBack"
+                    Click="RenameBackClick"
+                    Background="#ff7938"
+                    Foreground="White"
+                    Content="Back"
+                    Width="150"/>
         </StackPanel>
 
         <!--Create task group-->
@@ -68,7 +75,15 @@
                     Background="#FF7938"
                     Foreground="White"
                     Width="150"
-                    Click="CreateTaskGroup"/>
+                    Click="CreateTaskGroup"
+                    Margin="0, 0, 0, 10"/>
+
+            <Button x:Name="CreateBack"
+                    Click="CreateBackClick"
+                    Background="#ff7938"
+                    Foreground="White"
+                    Content="Back"
+                    Width="150"/>
         </StackPanel>
         
         <!--Task Section-->
