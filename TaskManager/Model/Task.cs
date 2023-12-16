@@ -33,7 +33,7 @@ namespace TaskManager.Model
                 OnPropertyChanged("DateOfCreation");
             } 
         }
-        public string Description {
+        public string Description { 
             get
             {
                 return _description;

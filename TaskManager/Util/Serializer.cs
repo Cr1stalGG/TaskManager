@@ -12,7 +12,7 @@ namespace TaskManager.Util
 
         public static void serialize(Object obj)
         {
-            string json = JsonSerializer.Serialize(obj);
+            string json = JsonSerializer.Serialize(obj, new JsonSerializerOptions { WriteIndented=true});
 
             File.WriteAllText(FILE_PATH, json);
         }
