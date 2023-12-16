@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Xml.Linq;
 using TaskManager.Model;
 
 namespace TaskManager.Service
@@ -59,14 +55,14 @@ namespace TaskManager.Service
 
         public bool isValidName(string val, List<TaskGroup> taskGroups)
         {
-            if (val == "")
+            if (val.Trim() == String.Empty)
                 return false;
 
             if (val.Length > 32)
                 return false;
 
             foreach (var taskGroup in taskGroups)
-                if (taskGroup.Name == val)
+                if (taskGroup.Name.Trim().ToLower() == val.Trim().ToLower())
                     return false;
 
             return true;
@@ -81,6 +77,21 @@ namespace TaskManager.Service
             }
 
             return -1;
+        }
+
+        public List<TaskGroup> findTaskLikeDescription(string description)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<TaskGroup> getComplitedTaskGroups()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Task> getComplitedTasks()
+        {
+            throw new NotImplementedException();
         }
     }
 }
