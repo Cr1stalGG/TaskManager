@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 using TaskManager.Model;
@@ -15,6 +12,9 @@ namespace TaskManager.Service
         ContextMenu getConfiguredContextMenu(TaskGroup taskGroup, RoutedEventHandler renameHandler, RoutedEventHandler deleteHandler);
         bool isValidName(string val, List<TaskGroup> taskGroups);
         public int findTaskGroupByName(string value, List<TaskGroup> taskGroups);
+        public List<TaskGroup> findTaskLikeDescription(String description);
+        public List<TaskGroup> getComplitedTaskGroups();
+        public List<Task> getComplitedTasks();
 
     }
 }
