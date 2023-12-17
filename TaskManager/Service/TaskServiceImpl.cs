@@ -79,22 +79,6 @@ namespace TaskManager.Service
             return -1;
         }
 
-        public List<TaskGroup> getComplitedTaskGroups(List<TaskGroup> taskGroups)
-        {
-            List<TaskGroup> complitedTaskGroups = new List<TaskGroup>();
-            foreach(TaskGroup taskGroup in taskGroups)
-            {
-                foreach(Task task in taskGroup.Tasks)
-                {
-                    if (!task.IsComplite)
-                        break;
-                }
-                complitedTaskGroups.Add(taskGroup);
-            }
-
-            return taskGroups;
-        }
-
         public List<Task> getComplitedTasks(List<TaskGroup> taskGroups)
         {
             List<Task> complitedTasks = new List<Task>();

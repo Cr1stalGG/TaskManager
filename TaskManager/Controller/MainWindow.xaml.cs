@@ -38,17 +38,18 @@ namespace TaskManager.View
 
         private void GetComplitedTasksClick(object sender, RoutedEventArgs e)
         {
-            
+            ShowInfo.ItemsSource = taskService.getComplitedTasks(taskGroups);
+
+            HideAll();
+            ShowInfo.Visibility = Visibility.Visible;
         }
 
         private void GetUncomplitedTasksClick(object sender, RoutedEventArgs e)
         {
-            
-        }
+            ShowInfo.ItemsSource = taskService.getUncomplitedTasks(taskGroups);
 
-        private void GetComplitedTaskGroups(object sender, RoutedEventArgs e)
-        {
-           
+            HideAll();
+            ShowInfo.Visibility = Visibility.Visible;
         }
 
         private void Draw()

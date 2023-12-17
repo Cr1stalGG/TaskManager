@@ -40,11 +40,6 @@
                     Background="#FF7938"
                     Foreground="#fff"
                     Click="GetUncomplitedTasksClick"/>
-            <Button Content="Complited task groups"
-                    Width="150"
-                    Background="#FF7938"
-                    Foreground="#fff"
-                    Click="GetComplitedTaskGroups"/>
 
         </StackPanel>
         
