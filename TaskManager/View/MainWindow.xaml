@@ -14,6 +14,40 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Visibility="Visible"
+                    HorizontalAlignment="Right">
+
+            <Button Content="Find task"
+                    Width="150"
+                    Background="#FF7938"
+                    Foreground="#fff"
+                    Click="FindTaskClick"/>
+            <Button Content="Complited tasks"
+                    Width="150"
+                    Background="#FF7938"
+                    Foreground="#fff"
+                    Click="GetComplitedTasksClick"/>
+            <Button Content="Uncomplited tasks"
+                    Width="150"
+                    Background="#FF7938"
+                    Foreground="#fff"
+                    Click="GetUncomplitedTasksClick"/>
+            <Button Content="Complited task groups"
+                    Width="150"
+                    Background="#FF7938"
+                    Foreground="#fff"
+                    Click="GetComplitedTaskGroups"/>
+
+        </StackPanel>
+        
         <!--Navigation Menu-->
         <ListBox x:Name="TaskGroups" 
                  Grid.Column="0"
@@ -26,7 +60,8 @@
         
         <StackPanel x:Name="RenameTaskGroup"
                     Background="#4E2C1C"
-                    Visibility="Hidden">
+                    Visibility="Hidden"
+                    Grid.Row="1">
             
             <Label Content="Input new name:" 
                    Foreground="White"
@@ -58,7 +93,8 @@
         
         <StackPanel x:Name="TaskGroupConfigurer"
                     Background="#4E2C1C"
-                    Visibility="Hidden">
+                    Visibility="Hidden"
+                    Grid.Row="1">
             
             <Label Content="Input task group name:"
                    Foreground="White"
@@ -92,7 +128,8 @@
                   FontWeight="Bold"
                   AutoGenerateColumns="False"
                   Visibility="Hidden"
-                  Background="#fff">
+                  Background="#fff"
+                  Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Date"
                                     Width="150"
@@ -111,6 +148,53 @@
                      Binding="{Binding Path=DeadLine, StringFormat=dd/MM/yyyy, UpdateSourceTrigger=LostFocus}"
                      IsReadOnly="False"/>
             </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel x:Name="FindTaskPanel"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Background="#442211"
+                    HorizontalAlignment="Center"
+                    Visibility="Hidden">
+            <Label Content="Input task description"
+                   Foreground="#FFF"
+                   FontSize="23"/>
+            <TextBox Name="InputTaskDescription"
+                     Margin="0, 20, 0, 10"/>
+            <Button Content="Find task group"
+                    Background="#FF7938"
+                    Foreground="White"
+                    Width="150"
+                    Click="FindTaskButtonClick"
+                    Margin="0, 20, 0, 10"/>
+        </StackPanel>
+
+        <DataGrid Grid.Column="1"
+          Name="ShowInfo"
+          FontWeight="Bold"
+          AutoGenerateColumns="False"
+          Visibility="Hidden"
+          Background="#fff"
+          Grid.Row="1">
+            <DataGrid.Columns>
+                
+            <DataGridTextColumn Header="Date"
+                                Width="150"
+                                Binding="{Binding Path=DateOfCreation, StringFormat=dd/MM/yyyy}"
+                                IsReadOnly="True"/>
+            <DataGridTextColumn Header="Description"
+                                Width="*"
+                                Binding="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}"
+                                IsReadOnly="True"/>
+            <DataGridCheckBoxColumn Header="Is complite"
+                                    Width="100"
+                                    Binding="{Binding Path=IsComplite, UpdateSourceTrigger=PropertyChanged}"
+                                    IsReadOnly="True"/>
+            <DataGridTextColumn Header="Deadline"
+                                Width="150"
+                                Binding="{Binding Path=DeadLine, StringFormat=dd/MM/yyyy, UpdateSourceTrigger=LostFocus}"
+                                IsReadOnly="True"/>
+        </DataGrid.Columns>
         </DataGrid>
 
     </Grid>

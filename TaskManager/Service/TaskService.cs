@@ -12,7 +12,7 @@ namespace TaskManager.Service
         ContextMenu getConfiguredContextMenu(TaskGroup taskGroup, RoutedEventHandler renameHandler, RoutedEventHandler deleteHandler);
         bool isValidName(string val, List<TaskGroup> taskGroups);
         public int findTaskGroupByName(string value, List<TaskGroup> taskGroups);
-        public List<TaskGroup> findTaskLikeDescription(String description);
+        public List<Task> findTaskByDescription(String description, List<TaskGroup> taskGroups);
         public List<TaskGroup> getComplitedTaskGroups(List<TaskGroup> taskGroups);
         public List<Task> getComplitedTasks(List<TaskGroup> taskGroups);
         public List<Task> getUncomplitedTasks(List<TaskGroup> taskGroups);

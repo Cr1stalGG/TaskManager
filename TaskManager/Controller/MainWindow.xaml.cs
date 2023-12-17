@@ -23,7 +23,34 @@ namespace TaskManager.View
 
             Draw();
         }
+
+        private void FindTaskClick(object sender, RoutedEventArgs e)
+        {
+            FindTaskPanel.Visibility = Visibility.Visible;
+        }
+        private void FindTaskButtonClick(object sender, RoutedEventArgs e)
+        {
+            ShowInfo.ItemsSource = taskService.findTaskByDescription(InputTaskDescription.Text, taskGroups);
+
+            HideAll();
+            ShowInfo.Visibility = Visibility.Visible;
+        }
+
+        private void GetComplitedTasksClick(object sender, RoutedEventArgs e)
+        {
             
+        }
+
+        private void GetUncomplitedTasksClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void GetComplitedTaskGroups(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
         private void Draw()
         {
             TaskGroups.Items.Clear();
@@ -78,6 +105,13 @@ namespace TaskManager.View
             Draw();
         }
 
+        private void HideAll()
+        {
+            Tasks.Visibility = Visibility.Hidden;
+            ShowInfo.Visibility = Visibility.Hidden;
+            FindTaskPanel.Visibility = Visibility.Hidden;
+        }
+
         private void Rename(object sender, RoutedEventArgs e)
         {
 
@@ -128,6 +162,8 @@ namespace TaskManager.View
             int id = taskService.findTaskGroupByName(btn.Tag.ToString(), taskGroups);
 
             Tasks.ItemsSource = taskGroups[id].Tasks;
+
+            HideAll();
 
             Tasks.Visibility = Visibility.Visible;
 

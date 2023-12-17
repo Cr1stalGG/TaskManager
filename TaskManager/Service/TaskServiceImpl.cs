@@ -79,11 +79,6 @@ namespace TaskManager.Service
             return -1;
         }
 
-        public List<TaskGroup> findTaskLikeDescription(string description)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<TaskGroup> getComplitedTaskGroups(List<TaskGroup> taskGroups)
         {
             List<TaskGroup> complitedTaskGroups = new List<TaskGroup>();
@@ -122,6 +117,18 @@ namespace TaskManager.Service
                         uncomplitedTasks.Add(task);
 
             return uncomplitedTasks;
+        }
+
+        public List<Task> findTaskByDescription(string description, List<TaskGroup> taskGroups)
+        {
+            List<Task> tasks = new List<Task>();
+
+            foreach(TaskGroup taskGroup in taskGroups)
+                foreach(Task task in taskGroup.Tasks)
+                    if(task.Description == description)
+                        tasks.Add(task);
+
+            return tasks;
         }
     }
 }
