@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
+using System.Windows;
 
 namespace TaskManager.Model
 {
@@ -9,17 +11,23 @@ namespace TaskManager.Model
         private string _description;
         private bool _isComplite;
         private DateTime _dateOfCreation = DateTime.Now;
-        private DateTime _dateOfComplite;
+        private DateTime _deadLine;
 
-        public DateTime DateOfComplite
+        public string DeadLine
         {
             get { 
-                return _dateOfComplite;
+                return _deadLine.ToString();
             }
             set
             {
-                _dateOfComplite = value;
-                OnPropertyChanged("DateOfComplite");
+                if (DateTime.TryParse(value, out _deadLine) && DateTime.Now < DateTime.Parse(value))
+                    _deadLine = DateTime.Parse(value);
+                else
+                {
+                    MessageBox.Show("Invalid Date format", "Error");
+                    _deadLine = DateTime.Now;
+                }
+                OnPropertyChanged("DeadLine");
             }
         }
 
@@ -58,9 +66,6 @@ namespace TaskManager.Model
                     return;
 
                 _isComplite = value;
-
-                if(_isComplite)
-                    _dateOfComplite = DateTime.Now;
 
                 OnPropertyChanged("IsComplite");
             } 

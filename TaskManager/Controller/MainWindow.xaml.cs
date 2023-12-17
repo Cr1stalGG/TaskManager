@@ -129,9 +129,6 @@ namespace TaskManager.View
 
             Tasks.ItemsSource = taskGroups[id].Tasks;
 
-            foreach (Task task in Tasks.ItemsSource)
-                if (task.IsComplite)
-                    task.DateOfComplite = DateTime.Now;
             Tasks.Visibility = Visibility.Visible;
 
             taskGroups[id].Tasks.ListChanged += tasksListChanged;
