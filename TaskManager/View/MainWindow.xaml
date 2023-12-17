@@ -108,7 +108,7 @@
                                         IsReadOnly="False"/>
                 <DataGridTextColumn Header="Deadline"
                      Width="150"
-                     Binding="{Binding Path=DeadLine, StringFormat=dd.MM.yyyy, UpdateSourceTrigger=LostFocus}"
+                     Binding="{Binding Path=DeadLine, StringFormat=dd/MM/yyyy, UpdateSourceTrigger=LostFocus}"
                      IsReadOnly="False"/>
             </DataGrid.Columns>
         </DataGrid>

@@ -13,6 +13,21 @@ namespace TaskManager.Model
         private DateTime _dateOfCreation = DateTime.Now;
         private DateTime _deadLine;
 
+        public DateTime DateOfCreation
+        {
+            get
+            {
+                return _dateOfCreation;
+            }
+            set
+            {
+           
+                _dateOfCreation = value;
+                
+                OnPropertyChanged("DateOfCreation");
+            }
+        }
+
         public string DeadLine
         {
             get { 
@@ -20,27 +35,27 @@ namespace TaskManager.Model
             }
             set
             {
-                if (DateTime.TryParse(value, out _deadLine) && DateTime.Now < DateTime.Parse(value))
+                if (DateTime.TryParse(value, out _deadLine))
                     _deadLine = DateTime.Parse(value);
+
                 else
                 {
                     MessageBox.Show("Invalid Date format", "Error");
                     _deadLine = DateTime.Now;
+                    return;
+                }
+
+                if (_dateOfCreation > _deadLine)
+                {
+                    MessageBox.Show("Deadline must be later than date of creation", "Error");
+                    _deadLine = DateTime.Now;
+                    return;
                 }
                 OnPropertyChanged("DeadLine");
             }
         }
 
-        public DateTime DateOfCreation { 
-            get {
-                return _dateOfCreation;
-            } 
-            set {
-                _dateOfCreation = value;
-
-                OnPropertyChanged("DateOfCreation");
-            } 
-        }
+        
         public string Description { 
             get
             {
