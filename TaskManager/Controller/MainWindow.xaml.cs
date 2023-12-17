@@ -26,6 +26,7 @@ namespace TaskManager.View
 
         private void FindTaskClick(object sender, RoutedEventArgs e)
         {
+            HideAll();
             FindTaskPanel.Visibility = Visibility.Visible;
         }
         private void FindTaskButtonClick(object sender, RoutedEventArgs e)
