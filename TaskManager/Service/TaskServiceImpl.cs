@@ -84,14 +84,44 @@ namespace TaskManager.Service
             throw new NotImplementedException();
         }
 
-        public List<TaskGroup> getComplitedTaskGroups()
+        public List<TaskGroup> getComplitedTaskGroups(List<TaskGroup> taskGroups)
         {
-            throw new NotImplementedException();
+            List<TaskGroup> complitedTaskGroups = new List<TaskGroup>();
+            foreach(TaskGroup taskGroup in taskGroups)
+            {
+                foreach(Task task in taskGroup.Tasks)
+                {
+                    if (!task.IsComplite)
+                        break;
+                }
+                complitedTaskGroups.Add(taskGroup);
+            }
+
+            return taskGroups;
         }
 
-        public List<Task> getComplitedTasks()
+        public List<Task> getComplitedTasks(List<TaskGroup> taskGroups)
         {
-            throw new NotImplementedException();
+            List<Task> complitedTasks = new List<Task>();
+
+            foreach(TaskGroup taskGroup in taskGroups)
+                foreach (Task task in taskGroup.Tasks)
+                    if (task.IsComplite)
+                        complitedTasks.Add(task);
+
+            return complitedTasks;
+        }
+
+        public List<Task> getUncomplitedTasks(List<TaskGroup> taskGroups)
+        {
+            List<Task> uncomplitedTasks = new List<Task>();
+
+            foreach (TaskGroup taskGroup in taskGroups)
+                foreach (Task task in taskGroup.Tasks)
+                    if (!task.IsComplite)
+                        uncomplitedTasks.Add(task);
+
+            return uncomplitedTasks;
         }
     }
 }
